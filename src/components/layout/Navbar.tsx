@@ -43,15 +43,24 @@ export const Navbar = () => {
       <div className={isScrolled || isHome ? "w-full" : "container-custom"}>
         <div className="flex items-center justify-between lg:justify-center relative">
           {/* Logo */}
+          {/* Logo */}
           <Link
             to="/"
-            className={`flex items-center gap-2 group lg:absolute lg:-left-28 mt-24 transition-all duration-300 ${isHome && !isScrolled ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-              }`}
+            className={`flex items-center gap-2 group transition-all duration-300 
+              ${isHome && !isScrolled
+                ? "lg:absolute lg:-left-28 lg:mt-24"
+                : "lg:static lg:mr-8"
+              } 
+              opacity-100 visible`}
           >
             <img
               src={logo}
               alt="EnviroChem Waste Solutions"
-              className="h-52 md:h-60 w-auto transition-transform duration-300 group-hover:scale-105"
+              className={`w-auto transition-transform duration-300 group-hover:scale-105
+                ${isHome && !isScrolled
+                  ? "h-12 md:h-16 lg:h-60"
+                  : "h-10 md:h-12"
+                }`}
             />
           </Link>
 

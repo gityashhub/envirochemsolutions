@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import logo from "@/assets/logo.png";
+import videoSrc from "@/assets/video.mp4";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -94,10 +95,14 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <img
-            src={heroBg}
-            alt="EnviroChem Facility"
+          <video
+            src={videoSrc}
             className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={heroBg}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-transparent" />
         </div>
@@ -182,14 +187,29 @@ const Index = () => {
       </section>
 
       {/* Who We Are */}
-      <section className="section-padding bg-gradient-to-b from-background to-eco-light">
-        <div className="container-custom">
+      {/* Who We Are with Video Background */}
+      <section className="relative section-padding overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            src={videoSrc}
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-white/30" />
+        </div>
+
+        <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-white/20"
             >
               <span className="text-primary font-semibold text-sm uppercase tracking-wider">
                 Who We Are
@@ -198,7 +218,7 @@ const Index = () => {
                 Leading the Way in{" "}
                 <span className="text-gradient">Environmental Protection</span>
               </h2>
-              <p className="text-charcoal-light leading-relaxed mb-6">
+              <p className="text-charcoal-light leading-relaxed mb-6 font-medium">
                 EnviroChem Waste Solutions is a pioneering company dedicated to
                 providing comprehensive chemical waste management services. With
                 over 15 years of experience, we've helped hundreds of businesses
@@ -225,7 +245,7 @@ const Index = () => {
               className="relative"
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-eco/20 rounded-3xl blur-2xl" />
-              <div className="relative glass-card-strong rounded-2xl p-8">
+              <div className="relative glass-card-strong rounded-2xl p-8 bg-white/80 backdrop-blur-md">
                 <img
                   src={logo}
                   alt="EnviroChem"
@@ -240,7 +260,7 @@ const Index = () => {
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="text-center p-4 rounded-xl bg-eco-light"
+                      className="text-center p-4 rounded-xl bg-eco-light/50"
                     >
                       <div className="text-2xl font-display font-bold text-primary">
                         {item.value}
@@ -256,6 +276,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+
 
       {/* Core Services */}
       <section className="section-padding">
