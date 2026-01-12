@@ -18,7 +18,6 @@ import {
   ArrowRight,
   Quote,
 } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 import logo from "@/assets/logo.png";
 import videoSrc from "@/assets/video.mp4";
 
@@ -102,7 +101,7 @@ const Index = () => {
             loop
             muted
             playsInline
-            poster={heroBg}
+            preload="auto"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-transparent" />
         </div>
