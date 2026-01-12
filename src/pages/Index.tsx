@@ -19,7 +19,7 @@ import {
   Quote,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
-import videoSrc from "@/assets/video.mp4";
+// import videoSrc from "@/assets/video.mp4"; // Moved to public for preloading
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -95,7 +95,7 @@ const Index = () => {
         {/* Background */}
         <div className="absolute inset-0">
           <video
-            src={videoSrc}
+            src="/video.mp4"
             className="w-full h-full object-cover"
             autoPlay
             loop
@@ -191,7 +191,7 @@ const Index = () => {
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video
-            src={videoSrc}
+            src="/video.mp4"
             className="w-full h-full object-cover"
             autoPlay
             loop
