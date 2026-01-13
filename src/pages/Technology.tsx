@@ -15,8 +15,11 @@ import {
   Cpu,
   Leaf,
   Zap,
+  FlaskConical,
+  Microscope,
 } from "lucide-react";
 import techHero from "@/assets/technology-hero.jpg";
+import { useState, useEffect } from "react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -35,119 +38,69 @@ const technologies = [
   {
     icon: Layers,
     title: "Advanced Waste Segregation",
+    tag: "AI Intelligence",
     description:
-      "AI-powered sorting systems that automatically classify and separate waste streams for optimal processing.",
-    features: [
-      "Automated material recognition",
-      "Real-time sorting optimization",
-      "99.5% accuracy rate",
-    ],
+      "Proprietary sorting systems that automatically classify and separate complex waste streams for optimal molecular recovery.",
+    stats: "99.5% Accuracy",
   },
   {
     icon: Atom,
     title: "Chemical Neutralization Systems",
+    tag: "Reactive Tech",
     description:
-      "Proprietary chemical treatment processes that safely neutralize hazardous compounds through controlled reactions.",
-    features: [
-      "pH balancing technology",
-      "Oxidation-reduction control",
-      "Heavy metal precipitation",
-    ],
+      "Advanced treatment processes that safely neutralize hazardous compounds through precision-controlled chemical reactions.",
+    stats: "Zero-Risk Matrix",
   },
   {
     icon: Flame,
-    title: "Eco-Friendly Incineration",
+    title: "Eco-Friendly Extraction",
+    tag: "Thermal Units",
     description:
-      "High-temperature thermal treatment with advanced emission controls, converting waste to energy while minimizing environmental impact.",
-    features: [
-      "Zero visible emissions",
-      "Energy recovery systems",
-      "Multi-stage filtration",
-    ],
+      "High-efficiency thermal treatment with advanced emission controls, reclaiming energy while ensuring non-toxic atmospheric discharge.",
+    stats: "Zero Emissions",
   },
   {
     icon: Droplets,
-    title: "Water & Solvent Recovery",
+    title: "Molecular Solvent Recovery",
+    tag: "Purification",
     description:
-      "Distillation and membrane technologies that reclaim usable water and solvents from waste streams for reuse.",
-    features: [
-      "95% recovery rate",
-      "Multi-stage purification",
-      "Closed-loop systems",
-    ],
+      "Vacuum-distillation and membrane technologies that reclaim 95%+ of usable solvents for industrial reintegration.",
+    stats: "95% Recovery Rate",
   },
   {
     icon: Target,
-    title: "Zero-Landfill Approach",
+    title: "Closed-Loop Grid",
+    tag: "Circular Model",
     description:
-      "Comprehensive waste diversion strategies ensuring no processable waste ends up in landfills.",
-    features: [
-      "100% waste diversion goal",
-      "Material lifecycle tracking",
-      "Waste-to-resource conversion",
-    ],
+      "Comprehensive waste diversion strategies ensuring no industrial output reaches a landfill, ever.",
+    stats: "100% Diversion",
   },
   {
-    icon: Brain,
-    title: "AI-Based Waste Tracking",
+    icon: Microscope,
+    title: "Predictive Residue Analysis",
+    tag: "Deep Scan",
     description:
-      "Intelligent monitoring systems providing real-time visibility into waste streams, processing status, and compliance metrics.",
-    features: [
-      "Blockchain verification",
-      "Predictive analytics",
-      "Automated reporting",
-    ],
-  },
-];
-
-const processSteps = [
-  {
-    number: "01",
-    title: "Waste Intake",
-    description: "Comprehensive analysis and classification of incoming waste materials",
-  },
-  {
-    number: "02",
-    title: "Smart Segregation",
-    description: "AI-powered sorting into optimized processing streams",
-  },
-  {
-    number: "03",
-    title: "Treatment & Processing",
-    description: "Application of appropriate treatment technologies",
-  },
-  {
-    number: "04",
-    title: "Resource Recovery",
-    description: "Maximum extraction of reusable materials and energy",
-  },
-  {
-    number: "05",
-    title: "Safe Disposal",
-    description: "Responsible handling of residual materials",
-  },
-  {
-    number: "06",
-    title: "Verification",
-    description: "Blockchain-verified documentation and compliance reporting",
+      "Intelligent monitoring systems providing real-time molecular visibility into waste streams and processing status.",
+    stats: "Real-time Auditing",
   },
 ];
 
 const Technology = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Hero Section - Compact Technical Header */}
+      <section className="relative py-24 md:py-32 bg-charcoal overflow-hidden border-b border-white/5">
+        {/* Background Image - Compact Banner */}
+        <div className="absolute inset-0 z-0">
           <img
             src={techHero}
-            alt="EnviroChem Technology"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-20 grayscale"
+            alt="Tech Hero"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/80 to-charcoal/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal to-charcoal" />
         </div>
 
-        <div className="container-custom relative z-10 pt-24">
+        <div className="container-custom relative z-10">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -156,262 +109,173 @@ const Technology = () => {
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6"
             >
-              <Cpu className="w-4 h-4 text-eco" />
-              <span className="text-white/90 text-sm font-medium">
-                Next-Generation Processing
-              </span>
+              <Cpu className="w-3 h-3" />
+              Technical Core
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6"
+              className="text-4xl md:text-6xl font-display font-bold text-white leading-tight mb-6"
             >
-              Waste Processing &{" "}
-              <span className="text-gradient">Recycling Technology</span>
+              The Science <br />
+              <span className="text-gradient">of Recovery</span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-white/80 leading-relaxed"
+              className="text-lg text-white/50 leading-relaxed max-w-2xl font-light"
             >
-              Cutting-edge technologies driving our commitment to a sustainable,
-              zero-waste future. Innovation meets environmental responsibility.
+              Leveraging proprietary molecular-stripping technology to reclaim high-purity chemical streams
+              from complex industrial residues.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Technologies Grid */}
-      <section className="section-padding">
+      {/* Tech Spec Grid */}
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="mb-20 flex flex-col md:flex-row items-end justify-between gap-8"
           >
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-              Our Technologies
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal mt-3 mb-6">
-              Powering a Green Future
-            </h2>
-            <p className="text-charcoal-light">
-              Our proprietary systems combine cutting-edge engineering with
-              environmental science to deliver superior waste processing outcomes.
+            <div className="max-w-xl">
+              <span className="text-primary font-bold text-xs uppercase tracking-widest mb-4 block">Process Arrays</span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal leading-tight">
+                High-Precision <br />
+                <span className="text-gradient">Recovery Modules</span>
+              </h2>
+            </div>
+            <p className="text-charcoal-light text-base max-w-md">
+              Each processing unit is a self-contained environment of chemical stability and resource extraction.
             </p>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {technologies.map((tech) => (
-              <motion.div key={tech.title} variants={fadeInUp} className="group">
-                <div className="h-full glass-card rounded-2xl p-6 hover:shadow-eco-lg transition-all duration-300 border border-transparent hover:border-primary/20">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-eco flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                    <tech.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-lg font-display font-bold text-charcoal mb-3">
-                    {tech.title}
-                  </h3>
-                  <p className="text-charcoal-light text-sm leading-relaxed mb-4">
-                    {tech.description}
-                  </p>
-                  <div className="space-y-2">
-                    {tech.features.map((feature) => (
-                      <div key={feature} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-eco shrink-0" />
-                        <span className="text-charcoal-light">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Process Flow */}
-      <section className="section-padding bg-charcoal text-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-              Process Flow
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mt-3 mb-6">
-              From Waste to Resource
-            </h2>
-            <p className="text-white/70">
-              Our integrated process ensures maximum value extraction and
-              minimal environmental impact at every stage.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {processSteps.map((step, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {technologies.map((tech, i) => (
               <motion.div
-                key={step.number}
-                variants={fadeInUp}
-                className="relative"
+                key={tech.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative p-8 md:p-10 bg-secondary/30 rounded-[2rem] border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-500"
               >
-                <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/50 transition-colors duration-300">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-eco flex items-center justify-center">
-                      <span className="text-lg font-display font-bold text-white">
-                        {step.number}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-display font-semibold">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-white/70 text-sm">{step.description}</p>
+                <div className="mb-8 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center group-hover:bg-primary transition-colors">
+                  <tech.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-white" />
+                </div>
+
+                <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-3 block">
+                  {tech.tag}
+                </span>
+                <h3 className="text-xl font-display font-bold text-charcoal mb-3">
+                  {tech.title}
+                </h3>
+                <p className="text-charcoal-light text-sm leading-relaxed mb-8">
+                  {tech.description}
+                </p>
+
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="h-0.5 flex-grow bg-black/5 group-hover:bg-primary/20 transition-colors" />
+                  <span className="text-[10px] font-mono font-bold text-charcoal/30 group-hover:text-primary transition-colors">{tech.stats}</span>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Circular Economy */}
-      <section className="section-padding bg-gradient-to-br from-eco-light via-teal-light to-secondary">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Circular Dynamic Model */}
+      <section className="py-24 bg-charcoal overflow-hidden relative">
+        <div className="container-custom relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
             >
-              <span className="text-eco font-semibold text-sm uppercase tracking-wider">
-                Circular Economy
-              </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal mt-3 mb-6">
-                Sustainable Circular Economy Model
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-8">
+                <RefreshCw className="w-3 h-3" />
+                Loop Mechanics
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-8 leading-tight">
+                The New Standard of <br />
+                <span className="text-gradient">Circular Materiality</span>
               </h2>
-              <p className="text-charcoal-light leading-relaxed mb-8">
-                Our approach goes beyond traditional waste management. We're
-                building a circular economy where waste becomes a valuable
-                resource, creating closed-loop systems that benefit both
-                businesses and the environment.
+              <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-lg">
+                We've decoded the industrial loop. Our model reintegrates
+                byproducts back into supply chains with zero loss of quality.
               </p>
-              <div className="space-y-4">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { icon: RefreshCw, text: "Closed-loop material cycles" },
-                  { icon: Zap, text: "Waste-to-energy conversion" },
-                  { icon: Leaf, text: "Carbon footprint reduction" },
-                  { icon: Target, text: "Zero-waste manufacturing support" },
-                ].map((item) => (
-                  <div key={item.text} className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-eco/20 flex items-center justify-center">
-                      <item.icon className="w-5 h-5 text-eco" />
-                    </div>
-                    <span className="text-charcoal font-medium">{item.text}</span>
+                  { label: 'Energy Savings', value: '50%+', icon: Zap },
+                  { label: 'Carbon Saved', value: '1.2M Tons', icon: Leaf },
+                  { label: 'Material Yield', value: '98%', icon: Layers },
+                  { label: 'Compliance', icon: Target, value: 'Tier 1' },
+                ].map((stat) => (
+                  <div key={stat.label} className="flex flex-col border-l border-white/10 pl-6 group">
+                    <stat.icon className="w-4 h-4 text-primary mb-3 group-hover:scale-110 transition-transform" />
+                    <div className="text-xl font-display font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/30">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-eco/30 rounded-full blur-3xl" />
-              <div className="relative flex items-center justify-center">
-                <div className="w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-dashed border-primary/30 flex items-center justify-center animate-spin-slow">
-                  <div className="w-56 h-56 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-primary to-eco flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <RefreshCw className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />
-                      <div className="text-xl md:text-2xl font-display font-bold">
-                        Circular
-                      </div>
-                      <div className="text-lg md:text-xl font-display">Economy</div>
+            <div className="relative flex items-center justify-center">
+              <div className="relative w-full aspect-square max-w-md">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 border border-dashed border-white/10 rounded-full"
+                />
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-primary to-eco p-1 shadow-[0_0_50px_rgba(var(--primary-rgb),0.3)]">
+                    <div className="w-full h-full rounded-full bg-charcoal flex flex-col items-center justify-center overflow-hidden relative">
+                      <RefreshCw className="w-10 h-10 text-white mb-2 relative z-10" />
+                      <div className="text-base font-display font-bold text-white relative z-10 uppercase tracking-widest">Closed Loop</div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-primary to-eco">
+      {/* CTA Section - The Tour */}
+      <section className="py-24 bg-white text-center">
         <div className="container-custom">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="glass-card-strong p-12 md:p-20 rounded-[3rem] border-black/5 bg-[#fafdfc] max-w-5xl mx-auto shadow-xl"
           >
-            {[
-              { value: "99.5%", label: "Sorting Accuracy" },
-              { value: "95%", label: "Resource Recovery" },
-              { value: "Zero", label: "Landfill Waste" },
-              { value: "50%", label: "Energy Savings" },
-            ].map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={fadeInUp}
-                className="text-center"
-              >
-                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-white/70 text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal mb-6">
-              Ready to Experience Our Technology?
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-charcoal mb-6">
+              Audit Our <span className="text-gradient">Innovations</span>
             </h2>
-            <p className="text-charcoal-light text-lg mb-10">
-              Schedule a facility tour or consultation to see our advanced
-              processing systems in action.
+            <p className="text-charcoal-light text-lg mb-10 max-w-2xl mx-auto">
+              We maintain an open-door policy for certified industrial partners.
+              Schedule a facility audit to see our recovery arrays in action.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild variant="hero" size="xl">
+              <Button asChild size="xl" className="rounded-full px-10 text-lg">
                 <Link to="/contact">
-                  Schedule a Tour
-                  <ArrowRight className="w-5 h-5" />
+                  Schedule Facility Audit
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="xl">
-                <Link to="/services">View Our Services</Link>
+              <Button asChild variant="outline" size="xl" className="rounded-full">
+                <Link to="/services">
+                  View Processing Scale
+                </Link>
               </Button>
             </div>
           </motion.div>

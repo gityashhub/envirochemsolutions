@@ -59,8 +59,8 @@ export const Navbar = () => {
               alt="EnviroChem Waste Solutions"
               className={`w-auto transition-all duration-300
                 ${isHome && !isScrolled && !isOpen
-                  ? "h-14 md:h-20 lg:h-36"
-                  : "h-12 md:h-14"
+                  ? "h-12 md:h-16 lg:h-24 xl:h-36"
+                  : "h-10 md:h-12 lg:h-14"
                 }`}
             />
           </Link>

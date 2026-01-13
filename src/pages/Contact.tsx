@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,8 +22,34 @@ import {
   Building2,
   User,
   Leaf,
+  Globe,
+  ArrowRight,
+  AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner";
+import aboutHero from "@/assets/about-hero.jpg";
+
+const LocalMagnetic = ({ children }: { children: React.ReactNode }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY, currentTarget } = e;
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+    const x = (clientX - (left + width / 2)) * 0.15;
+    const y = (clientY - (top + height / 2)) * 0.15;
+    setPosition({ x, y });
+  };
+  const handleMouseLeave = () => setPosition({ x: 0, y: 0 });
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -50,23 +77,27 @@ const wasteTypes = [
 const contactInfo = [
   {
     icon: MapPin,
-    title: "Visit Our Office",
+    title: "Global Headquarters",
     details: ["123 Green Tech Park", "Environmental Zone", "Eco City - 400001"],
+    tag: "HQ"
   },
   {
     icon: Phone,
-    title: "Call Us",
+    title: "Direct Connect",
     details: ["+1 (234) 567-890", "+1 (234) 567-891"],
+    tag: "Voice"
   },
   {
     icon: Mail,
-    title: "Email Us",
+    title: "Digital Correspondence",
     details: ["info@envirochem.com", "support@envirochem.com"],
+    tag: "Email"
   },
   {
     icon: Clock,
-    title: "Working Hours",
-    details: ["Mon - Fri: 8:00 AM - 6:00 PM", "24/7 Emergency Response"],
+    title: "Operational Status",
+    details: ["Mon - Fri: 8:00 AM - 6:00 PM", "24/7 Response Active"],
+    tag: "Uptime"
   },
 ];
 
@@ -84,14 +115,10 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    toast.success("Message sent successfully!", {
-      description: "Our team will get back to you within 24 hours.",
+    toast.success("Communication Logged", {
+      description: "Our technical team will review your requirements within 24 hours.",
     });
-
     setFormData({
       companyName: "",
       personName: "",
@@ -114,297 +141,187 @@ const Contact = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative py-32 md:py-40 bg-gradient-to-br from-charcoal via-teal-dark to-charcoal overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-eco/20 rounded-full blur-3xl" />
+      {/* Hero Section - Compact Banner */}
+      <section className="relative py-24 md:py-32 bg-charcoal overflow-hidden border-b border-white/5">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={aboutHero}
+            className="w-full h-full object-cover opacity-20 grayscale"
+            alt="Contact Hero"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal to-charcoal" />
         </div>
 
-        <div className="container-custom relative z-10">
+        <div className="container-custom relative z-10 text-center md:text-left">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center max-w-3xl mx-auto"
+            className="max-w-3xl"
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-6"
             >
-              <Leaf className="w-4 h-4 text-eco" />
-              <span className="text-white/90 text-sm font-medium">
-                Get in Touch
-              </span>
+              <Globe className="w-3 h-3" />
+              Service Node
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6"
+              className="text-4xl md:text-6xl font-display font-bold text-white leading-tight mb-6"
             >
-              <span className="text-gradient">Contact</span> Us
+              Let's Start <br />
+              <span className="text-gradient">Advancing Together</span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-white/80 leading-relaxed"
+              className="text-lg text-white/50 leading-relaxed max-w-xl font-light"
             >
-              Let's build a cleaner tomorrow together. Reach out for
-              consultations, quotes, or any questions.
+              Contact our technical advisors to architect a waste management
+              strategy that aligns with your industrial sustainability goals.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="section-padding">
+      {/* Grid & Form */}
+      <section className="py-24 bg-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-2"
-            >
-              <div className="glass-card-strong rounded-2xl p-8 md:p-10">
-                <h2 className="text-2xl font-display font-bold text-charcoal mb-6">
-                  Send Us a Message
-                </h2>
+            {/* Info Column */}
+            <div className="lg:col-span-1 space-y-6">
+              <div className="grid grid-cols-1 gap-4">
+                {contactInfo.map((info) => (
+                  <motion.div
+                    key={info.title}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-6 rounded-2xl bg-secondary/30 border border-black/5 hover:bg-white transition-all hover:shadow-lg"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0">
+                        <info.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-bold text-primary uppercase tracking-[0.2em] block mb-1">{info.tag}</span>
+                        <h3 className="text-base font-display font-bold text-charcoal mb-2">{info.title}</h3>
+                        {info.details.map((detail, index) => (
+                          <p key={index} className="text-charcoal-light text-xs">{detail}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Red Alert Banner - Compact */}
+              <div className="p-8 rounded-[2rem] bg-charcoal text-white relative overflow-hidden">
+                <div className="relative z-10 text-center md:text-left">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-primary font-bold uppercase tracking-widest text-[9px] mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    Priority Channel
+                  </div>
+                  <h3 className="text-xl font-display font-bold mb-6 italic">24/7 Emergency Spill Response</h3>
+                  <Button variant="hero" size="lg" className="w-full rounded-full text-sm">
+                    <a href="tel:+1234567899" className="flex items-center justify-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      +1 (234) 567-899
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Form Column */}
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="p-6 sm:p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] bg-[#fafdfc] border border-black/5 shadow-xl"
+              >
+                <h2 className="text-2xl md:text-3xl font-display font-bold text-charcoal mb-8 md:mb-10">Transmission Log</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-charcoal flex items-center gap-2">
-                        <Building2 className="w-4 h-4 text-primary" />
-                        Company Name
-                      </label>
+                      <label className="text-[10px] font-bold text-charcoal/40 uppercase tracking-widest px-1">Organization</label>
                       <Input
-                        name="companyName"
-                        value={formData.companyName}
-                        onChange={handleChange}
-                        placeholder="Your company name"
-                        required
-                        className="h-12"
+                        name="companyName" value={formData.companyName} onChange={handleChange} required
+                        className="h-12 rounded-xl bg-white border-black/5 focus:ring-primary/20 px-4"
                       />
                     </div>
-
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-charcoal flex items-center gap-2">
-                        <User className="w-4 h-4 text-primary" />
-                        Contact Person
-                      </label>
+                      <label className="text-[10px] font-bold text-charcoal/40 uppercase tracking-widest px-1">Represented By</label>
                       <Input
-                        name="personName"
-                        value={formData.personName}
-                        onChange={handleChange}
-                        placeholder="Your name"
-                        required
-                        className="h-12"
+                        name="personName" value={formData.personName} onChange={handleChange} required
+                        className="h-12 rounded-xl bg-white border-black/5 focus:ring-primary/20 px-4"
                       />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-charcoal flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-primary" />
-                        Email Address
-                      </label>
+                      <label className="text-[10px] font-bold text-charcoal/40 uppercase tracking-widest px-1">Email Address</label>
                       <Input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your@email.com"
-                        required
-                        className="h-12"
+                        type="email" name="email" value={formData.email} onChange={handleChange} required
+                        className="h-12 rounded-xl bg-white border-black/5 focus:ring-primary/20 px-4"
                       />
                     </div>
-
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-charcoal flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-primary" />
-                        Phone Number
-                      </label>
+                      <label className="text-[10px] font-bold text-charcoal/40 uppercase tracking-widest px-1">Contact Primary</label>
                       <Input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+1 (234) 567-890"
-                        className="h-12"
+                        type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                        className="h-12 rounded-xl bg-white border-black/5 focus:ring-primary/20 px-4"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-charcoal">
-                      Waste Type
-                    </label>
-                    <Select
-                      value={formData.wasteType}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, wasteType: value })
-                      }
-                    >
-                      <SelectTrigger className="h-12">
-                        <SelectValue placeholder="Select waste type" />
+                    <label className="text-[10px] font-bold text-charcoal/40 uppercase tracking-widest px-1">Waste Protocol</label>
+                    <Select onValueChange={(v) => setFormData({ ...formData, wasteType: v })}>
+                      <SelectTrigger className="h-12 rounded-xl bg-white border-black/5">
+                        <SelectValue placeholder="Select primary stream" />
                       </SelectTrigger>
-                      <SelectContent>
-                        {wasteTypes.map((type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
-                          </SelectItem>
-                        ))}
+                      <SelectContent className="rounded-xl">
+                        {wasteTypes.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-charcoal">
-                      Message
-                    </label>
+                    <label className="text-[10px] font-bold text-charcoal/40 uppercase tracking-widest px-1">Description</label>
                     <Textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your waste management needs..."
-                      rows={5}
-                      required
+                      name="message" value={formData.message} onChange={handleChange} required
+                      className="rounded-2xl bg-white border-black/5 min-h-[120px] p-4"
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    variant="hero"
-                    size="xl"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-5 h-5" />
-                      </>
-                    )}
-                  </Button>
+                  <LocalMagnetic>
+                    <Button type="submit" size="xl" className="w-full rounded-full h-14 font-bold" disabled={isSubmitting}>
+                      {isSubmitting ? "Validating..." : "Execute Log"}
+                    </Button>
+                  </LocalMagnetic>
                 </form>
-              </div>
-            </motion.div>
-
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              {contactInfo.map((info) => (
-                <div
-                  key={info.title}
-                  className="glass-card rounded-xl p-6 hover:shadow-eco-md transition-shadow duration-300"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-eco flex items-center justify-center shrink-0">
-                      <info.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-charcoal mb-2">
-                        {info.title}
-                      </h3>
-                      {info.details.map((detail, index) => (
-                        <p key={index} className="text-charcoal-light text-sm">
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              {/* Emergency Banner */}
-              <div className="p-6 rounded-xl bg-gradient-to-r from-primary to-eco text-white">
-                <h3 className="font-display font-bold text-lg mb-2">
-                  24/7 Emergency Response
-                </h3>
-                <p className="text-white/80 text-sm mb-4">
-                  For chemical spills and urgent situations, our emergency team
-                  is available around the clock.
-                </p>
-                <a
-                  href="tel:+1234567899"
-                  className="inline-flex items-center gap-2 font-semibold"
-                >
-                  <Phone className="w-4 h-4" />
-                  Emergency: +1 (234) 567-899
-                </a>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-16 bg-secondary">
+      {/* Simplified Map */}
+      <section className="py-16 bg-[#fafdfc]">
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-12"
-          >
-            <h2 className="text-3xl font-display font-bold text-charcoal mb-4">
-              Find Our Location
-            </h2>
-            <p className="text-charcoal-light">
-              Visit our headquarters or schedule a facility tour to see our
-              operations firsthand.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl overflow-hidden shadow-eco-lg"
-          >
+          <div className="rounded-[2.5rem] overflow-hidden shadow-lg border border-white">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30591910525!2d-74.25986652089301!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1699000000000!5m2!1sen!2s"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="EnviroChem Location"
+              width="100%" height="450" style={{ border: 0, filter: 'grayscale(0.5)' }} allowFullScreen
+              loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Location"
             />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary via-teal to-eco">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <CheckCircle2 className="w-16 h-16 text-white/80 mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
-              "Let's Build a Cleaner Tomorrow Together"
-            </h2>
-            <p className="text-white/80 text-lg">
-              Partner with EnviroChem for sustainable, compliant, and efficient
-              waste management solutions.
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
     </Layout>
