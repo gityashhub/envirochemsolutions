@@ -39,8 +39,8 @@ export const Navbar = () => {
     <nav
       className={`fixed z-50 transition-all duration-500 ease-in-out left-1/2 -translate-x-1/2 
         ${isNavSolid
-          ? "top-4 w-[95%] md:w-[90%] lg:w-[85%] max-w-7xl rounded-2xl bg-white/95 backdrop-blur-md shadow-lg border border-white/20 py-4 px-6"
-          : "top-6 w-[95%] max-w-7xl bg-transparent border-transparent py-4 px-6"
+          ? "top-0 w-[95%] md:w-[90%] lg:w-[85%] max-w-7xl rounded-2xl rounded-t-none bg-white/95 backdrop-blur-md shadow-lg border border-white/20 py-4 px-6"
+          : "top-1 w-[95%] max-w-7xl bg-transparent border-transparent py-4 px-6"
         }`}
     >
       <div className="flex flex-col">
@@ -59,8 +59,8 @@ export const Navbar = () => {
               alt="EnviroChem Waste Solutions"
               className={`w-auto transition-all duration-300
                 ${isHome && !isScrolled && !isOpen
-                  ? "h-12 md:h-16 lg:h-32"
-                  : "h-10 md:h-12"
+                  ? "h-14 md:h-20 lg:h-36"
+                  : "h-12 md:h-14"
                 }`}
             />
           </Link>
