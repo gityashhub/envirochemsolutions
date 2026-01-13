@@ -39,12 +39,12 @@ export const Navbar = () => {
     <nav
       className={`fixed z-50 transition-all duration-500 ease-in-out left-1/2 -translate-x-1/2 
         ${isNavSolid
-          ? "top-0 w-[95%] md:w-[90%] lg:w-[85%] max-w-7xl rounded-2xl rounded-t-none bg-white/95 backdrop-blur-md shadow-lg border border-white/20 py-4 px-6"
+          ? "top-0 w-fit max-w-[95%] rounded-2xl rounded-t-none bg-white/95 backdrop-blur-md shadow-lg border border-white/20 py-2 px-8"
           : "top-1 w-[95%] max-w-7xl bg-transparent border-transparent py-4 px-6"
         }`}
     >
       <div className="flex flex-col">
-        <div className="flex items-center justify-between relative">
+        <div className="flex items-center justify-between gap-12 relative">
           {/* Logo */}
           <Link
             to="/"
