@@ -177,7 +177,7 @@ const About = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/80 to-charcoal/60" />
         </div>
 
-        <div className="container-custom relative z-10 pt-24">
+        <div className="container-custom relative z-10 pt-32 md:pt-44 pb-20">
           <motion.div
             initial="hidden"
             animate="visible"

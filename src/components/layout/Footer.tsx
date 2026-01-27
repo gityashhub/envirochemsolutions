@@ -99,25 +99,25 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
                 <span className="text-white/70 text-sm">
-                  123 Green Tech Park, Environmental Zone, Eco City - 400001
+                  Nr. priya cinema, ff07 EnviroChem Waste Solutions, 30mt, Canal ring road, Sevasi, Vadodara, Gujarat 391101
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-primary shrink-0" />
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+919265299252"
                   className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
                 >
-                  +1 (234) 567-890
+                  +91 9265299252
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-primary shrink-0" />
                 <a
-                  href="mailto:info@envirochem.com"
+                  href="mailto:envirochemwastesolutions@gmail.com"
                   className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
                 >
-                  info@envirochem.com
+                  envirochemwastesolutions@gmail.com
                 </a>
               </li>
             </ul>

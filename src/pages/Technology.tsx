@@ -100,7 +100,7 @@ const Technology = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal to-charcoal" />
         </div>
 
-        <div className="container-custom relative z-10">
+        <div className="container-custom relative z-10 pt-32 md:pt-44 pb-20">
           <motion.div
             initial="hidden"
             animate="visible"

@@ -192,7 +192,7 @@ const Index = () => {
         </div>
 
         {/* Content */}
-        <div className="container-custom relative z-10 pt-24">
+        <div className="container-custom relative z-10 pt-32 md:pt-44">
           <motion.div
             initial="hidden"
             animate="visible"

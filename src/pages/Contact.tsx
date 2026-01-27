@@ -78,19 +78,19 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Global Headquarters",
-    details: ["123 Green Tech Park", "Environmental Zone", "Eco City - 400001"],
+    details: ["Nr. priya cinema, ff07 EnviroChem Waste Solutions", "30mt, Canal ring road", "Sevasi, Vadodara, Gujarat 391101"],
     tag: "HQ"
   },
   {
     icon: Phone,
     title: "Direct Connect",
-    details: ["+1 (234) 567-890", "+1 (234) 567-891"],
+    details: ["+91 9265299252"],
     tag: "Voice"
   },
   {
     icon: Mail,
     title: "Digital Correspondence",
-    details: ["info@envirochem.com", "support@envirochem.com"],
+    details: ["envirochemwastesolutions@gmail.com"],
     tag: "Email"
   },
   {
@@ -152,7 +152,7 @@ const Contact = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal to-charcoal" />
         </div>
 
-        <div className="container-custom relative z-10 text-center md:text-left">
+        <div className="container-custom relative z-10 pt-32 md:pt-44 pb-20 text-center md:text-left">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -209,7 +209,17 @@ const Contact = () => {
                         <span className="text-[9px] font-bold text-primary uppercase tracking-[0.2em] block mb-1">{info.tag}</span>
                         <h3 className="text-base font-display font-bold text-charcoal mb-2">{info.title}</h3>
                         {info.details.map((detail, index) => (
-                          <p key={index} className="text-charcoal-light text-xs">{detail}</p>
+                          info.tag === "Voice" ? (
+                            <a
+                              key={index}
+                              href="tel:+919265299252"
+                              className="text-charcoal-light text-xs hover:text-primary transition-colors"
+                            >
+                              +91 9265299252
+                            </a>
+                          ) : (
+                            <p key={index} className="text-charcoal-light text-xs">{detail}</p>
+                          )
                         ))}
                       </div>
                     </div>
@@ -226,9 +236,9 @@ const Contact = () => {
                   </div>
                   <h3 className="text-xl font-display font-bold mb-6 italic">24/7 Emergency Spill Response</h3>
                   <Button variant="hero" size="lg" className="w-full rounded-full text-sm">
-                    <a href="tel:+1234567899" className="flex items-center justify-center gap-2">
+                    <a href="tel:+919265299252" className="flex items-center justify-center gap-2">
                       <Phone className="w-4 h-4" />
-                      +1 (234) 567-899
+                      +91 9265299252
                     </a>
                   </Button>
                 </div>
@@ -317,7 +327,7 @@ const Contact = () => {
         <div className="container-custom">
           <div className="rounded-[2.5rem] overflow-hidden shadow-lg border border-white">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30591910525!2d-74.25986652089301!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1699000000000!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.8716335345705!2d73.1118!3d22.3205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fca873954e7d1%3A0x6bba46c9a0c2834b!2sSevasi%2C%20Vadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%" height="450" style={{ border: 0, filter: 'grayscale(0.5)' }} allowFullScreen
               loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Location"
             />

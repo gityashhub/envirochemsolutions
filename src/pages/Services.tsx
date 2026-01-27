@@ -153,7 +153,7 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="container-custom relative z-10">
+        <div className="container-custom relative z-10 pt-32 md:pt-44 pb-20">
           <div className="max-w-3xl">
             <motion.div
               initial="hidden"
