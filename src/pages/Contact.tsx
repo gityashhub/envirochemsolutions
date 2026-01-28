@@ -84,7 +84,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Direct Connect",
-    details: ["+91 9265299252"],
+    details: ["+91 9265299252", "+91 9313564495"],
     tag: "Voice"
   },
   {
@@ -208,19 +208,21 @@ const Contact = () => {
                       <div>
                         <span className="text-[9px] font-bold text-primary uppercase tracking-[0.2em] block mb-1">{info.tag}</span>
                         <h3 className="text-base font-display font-bold text-charcoal mb-2">{info.title}</h3>
-                        {info.details.map((detail, index) => (
-                          info.tag === "Voice" ? (
-                            <a
-                              key={index}
-                              href="tel:+919265299252"
-                              className="text-charcoal-light text-xs hover:text-primary transition-colors"
-                            >
-                              +91 9265299252
-                            </a>
-                          ) : (
-                            <p key={index} className="text-charcoal-light text-xs">{detail}</p>
-                          )
-                        ))}
+                        <div className="flex flex-col gap-1">
+                          {info.details.map((detail, index) => (
+                            info.tag === "Voice" ? (
+                              <a
+                                key={index}
+                                href={`tel:${detail.replace(/\s+/g, '')}`}
+                                className="text-charcoal-light text-xs hover:text-primary transition-colors"
+                              >
+                                {detail}
+                              </a>
+                            ) : (
+                              <p key={index} className="text-charcoal-light text-xs">{detail}</p>
+                            )
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -235,12 +237,20 @@ const Contact = () => {
                     Priority Channel
                   </div>
                   <h3 className="text-xl font-display font-bold mb-6 italic">24/7 Emergency Spill Response</h3>
-                  <Button variant="hero" size="lg" className="w-full rounded-full text-sm">
-                    <a href="tel:+919265299252" className="flex items-center justify-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      +91 9265299252
-                    </a>
-                  </Button>
+                  <div className="space-y-3">
+                    <Button variant="hero" size="lg" className="w-full rounded-full text-sm">
+                      <a href="tel:+919265299252" className="flex items-center justify-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        +91 9265299252
+                      </a>
+                    </Button>
+                    <Button variant="hero" size="lg" className="w-full rounded-full text-sm">
+                      <a href="tel:+919313564495" className="flex items-center justify-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        +91 9313564495
+                      </a>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

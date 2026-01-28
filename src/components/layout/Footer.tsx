@@ -102,14 +102,22 @@ export const Footer = () => {
                   Nr. priya cinema, ff07 EnviroChem Waste Solutions, 30mt, Canal ring road, Sevasi, Vadodara, Gujarat 391101
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-primary shrink-0" />
-                <a
-                  href="tel:+919265299252"
-                  className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
-                >
-                  +91 9265299252
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone size={18} className="text-primary shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="tel:+919265299252"
+                    className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    +91 9265299252
+                  </a>
+                  <a
+                    href="tel:+919313564495"
+                    className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    +91 9313564495
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-primary shrink-0" />
